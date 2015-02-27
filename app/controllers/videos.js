@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   videos: [],
+  currentVideo: null,
   actions: {
     search: function() {
 
@@ -19,7 +20,7 @@ export default Ember.Controller.extend({
           newVideos.push(Ember.Object.create({
             title: response.items[i].snippet.title,
             url: response.items[i].snippet.thumbnails.default.url,
-            videoId: "https://www.youtube.com/watch?v=" + response.items[i].id.videoId, 
+            videoId: "https://www.youtube.com/watch?v=" + response.items[i].id.videoId,
             description: response.items[i].snippet.description
           }));
         }
@@ -31,6 +32,13 @@ export default Ember.Controller.extend({
     },
     favorite: function (video) {
       video.toggleProperty('favorited');
+    },
+
+
+    playVideo: function (video) {
+      this.set("currentVideo", video)
+      console.log("playVideo", this.get("currentVideo"))
     }
+
   }
 });

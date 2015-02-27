@@ -9,6 +9,7 @@
 
 .heart.icon.selected {
   color:red;
+  pointer-events: none;
 }
 
 body {
